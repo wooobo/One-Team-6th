@@ -24,9 +24,16 @@ def solution(points, routes):
             move_c = target_robot_position[1] - robot_position[1]
 
             robot_last_position = robot_position
+            key = get_key(time, robot_last_position)
+            time += 1
+            if key in robot_paths:
+                robot_paths[key] += 1
+            else:
+                robot_paths[key] = 1
+
             # move_r 부터 모두 이동
             move_r_direction = 1 if move_r > 0 else -1
-            for i in range(1, abs(move_r) + 1):
+            for _ in range(0, abs(move_r)):
                 robot_last_position = [robot_last_position[0] + move_r_direction, robot_last_position[1]]
                 key = get_key(time, robot_last_position)
                 time += 1
@@ -37,7 +44,7 @@ def solution(points, routes):
 
             move_c_direction = 1 if move_c > 0 else -1
             # move_c 부터 모두 이동
-            for i in range(1, abs(move_c) + 1):
+            for _ in range(0, abs(move_c)):
                 robot_last_position = [robot_last_position[0], robot_last_position[1] + move_c_direction]
                 key = get_key(time, robot_last_position)
                 time += 1
@@ -45,8 +52,6 @@ def solution(points, routes):
                     robot_paths[key] += 1
                 else:
                     robot_paths[key] = 1
-
-    print(robot_paths)
 
     return sum(1 for v in robot_paths.values() if v >= 2)
 
