@@ -1,8 +1,5 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/340211
-from collections import Counter
 
-
-# 모든 로봇이 운송을 마칠 때까지 발생하는 위험한 상황의 횟수를 return 하도록 solution 함수를 완성해 주세요.
 def get_key(index, position):
     return f"{index}_{position[0]}_{position[1]}"
 
